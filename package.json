@@ -1,0 +1,15 @@
+{
+  "name": "jsdom-leak-repro",
+  "version": "1.0.0",
+  "description": "Reproduction of leak in JSDOM lib",
+  "main": "index.js",
+  "repository": "git@github.com:thymikee/jsdom-leak-repro.git",
+  "author": "Michał Pierzchała <thymikee@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^9.9.1"
+  },
+  "scripts": {
+    "test": "node --expose-gc --inspect index.js"
+  }
+}
