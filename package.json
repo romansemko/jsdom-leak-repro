@@ -7,9 +7,11 @@
   "author": "Michał Pierzchała <thymikee@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "browserify": "^13.1.1",
     "jsdom": "^9.9.1"
   },
   "scripts": {
-    "test": "node --expose-gc --inspect index.js"
+    "test": "node --expose-gc --inspect index.js",
+    "browser": "browserify index.js -o browser.js"
   }
 }

@@ -1,17 +1,26 @@
+'use strict';
+
 const jsdom = require('jsdom');
 const toMB = bytes => Math.floor(bytes / 1024 / 1024);
 
 function spawnWindow(index) {
   let document = jsdom.jsdom({ url: 'about:blank' });
   let window = document.defaultView;
-  const bytes = process.memoryUsage().heapUsed;
 
-  console.log(index, `(${toMB(bytes)} MB)`);
+  try {
+    const bytes = process.memoryUsage().heapUsed;
+    console.log(index, `(${toMB(bytes)} MB)`);
+  } catch(error) {
+    console.log(index);
+  }
 
   window.close();
-  global.gc();
+
+  if (global.gc) {
+    global.gc();
+  }
 }
 
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 10000; i++) {
   spawnWindow(i);
 }
