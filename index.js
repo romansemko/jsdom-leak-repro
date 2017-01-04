@@ -7,20 +7,22 @@ function spawnWindow(index) {
   let document = jsdom.jsdom({ url: 'about:blank' });
   let window = document.defaultView;
 
-  try {
-    const bytes = process.memoryUsage().heapUsed;
-    console.log(index, `(${toMB(bytes)} MB)`);
-  } catch(error) {
-    console.log(index);
-  }
+  setTimeout(() => {
+    try {
+      const bytes = process.memoryUsage().heapUsed;
+      console.log(index, `(${toMB(bytes)} MB)`);
+    } catch(error) {
+      console.log(index);
+    }
 
-  window.close();
+    window.close();
 
-  if (global.gc) {
-    global.gc();
-  }
+    if (global.gc) {
+      global.gc();
+    }
+  }, 0)
 }
 
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 200; i++) {
   spawnWindow(i);
 }
